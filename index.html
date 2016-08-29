@@ -1,0 +1,175 @@
+<!doctype html>
+<!--
+
+Copyright (c) Julien Dubois - http://www.julien-dubois.com. All Rights Reserved.
+
+This file is part of JHipster-App - https://github.com/jhipster/jhipster-app
+
+JHipster-App is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+JHipster-App is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with JHipster-App.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>JHipster</title>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="index.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h3 id="projectName">No project selected</h3>
+        <div>
+            <small id="projectFolder"></small>&nbsp;
+            <span class="fa fa-cog fa-lg text-right" onclick="selectProject()"></span>&nbsp;
+            <span class="fa fa-external-link" onclick="projectOpen()"></span><br/>
+            <small><i id="projectJhipsterVersion"></i></small>
+        </div>
+    </header>
+    <div id="no-jhipster-project" class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <img src="logo-jhipster-drink-coffee.png" class="center-block" alt="Welcome, Java Hipster">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h3>Greetings, Java Hipster!</h3>
+                <p>
+                    To use an existing project, use the <span class="fa fa-cog fa-lg text-right" onclick="selectProject()"></span> on the top of this window.
+                </p>
+                <p>
+                    To create a new project, open up a terminal and type:<br/>
+                    <code>yo jhipster</code>
+                </p>
+
+            </div>
+        </div>
+    </div>
+    <div id="main" class="container">
+        <table class="table table-condensed">
+            <tr>
+                <td><span class="label label-primary">dev</span> Clean up</td>
+                <td><span id="clean-up-run" class="fa fa-play" onclick="cleanUpRun()" data-toggle="popover" data-placement="auto top" data-trigger="focus" data-trigger="manual" data-content="Check the 'clean-up' logs"></span></td>
+                <td><span class="fa fa-stop" onclick="cleanUpStop()"></span></td>
+                <td><span class="fa fa-list" onclick="cleanUpLogs()"></span></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><span class="label label-primary">dev</span> Compile</td>
+                <td><span id="compile-run" class="fa fa-play" onclick="compileRun()" data-toggle="popover" data-placement="auto top" data-trigger="focus" data-trigger="manual" data-content="Compilation failed!"></span></td>
+                <td><span class="fa fa-stop" onclick="compileStop()"></span></td>
+                <td><span class="fa fa-list" onclick="compileLogs()"></span></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><span class="label label-primary">dev</span> Java server <span id="dev-server-running"></span></td>
+                <td><span id="dev-server-run" class="fa fa-play" onclick="devServerRun()" data-toggle="popover" data-placement="auto top" data-trigger="focus" data-trigger="manual" data-content="Check the 8080 port the and 'dev-server' logs"></span></td>
+                <td><span class="fa fa-stop" onclick="devServerStop()"></span></td>
+                <td><span class="fa fa-list" onclick="devServerLogs()"></span></td>
+                <td><span class="fa fa-external-link" onclick="devServerOpen()"></span></td>
+            </tr>
+            <tr>
+                <td><span class="label label-primary">dev</span> BrowserSync <span id="dev-client-running"></span></td>
+                <td><span id="dev-client-run" class="fa fa-play" onclick="devClientRun()" data-toggle="popover" data-placement="auto top" data-trigger="focus" data-trigger="manual" data-content="Check the 9000 port and 'dev-client' logs"></span></td>
+                <td><span class="fa fa-stop" onclick="devClientStop()"></span></td>
+                <td><span class="fa fa-list" onclick="devClientLogs()"></span></td>
+                <td><span class="fa fa-external-link" onclick="devClientOpen()"></span></td>
+            </tr>
+            <tr id="dev-database">
+                <td><span class="label label-primary">dev</span> Database <span id="dev-database-running"></span></td>
+                <td><span id="dev-database-run" class="fa fa-play" onclick="devDatabaseRun()" data-toggle="popover" data-placement="auto top" data-trigger="focus" data-trigger="manual" data-content="Check the database port and 'dev-database' logs"></span></td>
+                <td><span class="fa fa-stop" onclick="devDatabaseStop()"></span></td>
+                <td><span class="fa fa-list" onclick="devDatabaseLogs()"></span></td>
+                <td><span class="fa fa-external-link" onclick="devDatabaseOpen()"></span></td>
+            </tr>
+            <tr>
+                <td><span class="label label-info">test</span> JUnit</td>
+                <td><span id="test-server-run" class="fa fa-play" onclick="testServerRun()" data-toggle="popover" data-placement="auto top" data-trigger="focus" data-trigger="manual" data-content="There were probably test failures, check the 'test-server' logs"></span></td>
+                <td><span class="fa fa-stop" onclick="testServerStop()"></span></td>
+                <td><span class="fa fa-list" onclick="testServerLogs()"></span></td>
+                <td><span class="fa fa-external-link" onclick="testServerOpen()"></td>
+            </tr>
+            <tr>
+                <td><span class="label label-info">test</span> Karma</td>
+                <td><span id="test-karma-run" class="fa fa-play" onclick="testKarmaRun()" data-toggle="popover" data-placement="auto top" data-trigger="focus" data-trigger="manual" data-content="There were probably test failures, check the 'test-karma' logs"></span></td>
+                <td><span class="fa fa-stop" onclick="testKarmaStop()"></span></td>
+                <td><span class="fa fa-list" onclick="testKarmaLogs()"></span></td>
+                <td></td>
+            </tr>
+            <tr id="test-protractor">
+                <td><span class="label label-info">test</span> Protractor</td>
+                <td><span id="test-protractor-run" class="fa fa-play" onclick="testProtractorRun()" data-toggle="popover" data-placement="auto top" data-trigger="focus" data-trigger="manual" data-content="There were probably test failures, check the 'test-protractor' logs"></span></td>
+                <td><span class="fa fa-stop" onclick="testProtractorStop()"></span></td>
+                <td><span class="fa fa-list" onclick="testProtractorLogs()"></span></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><span class="label label-warning">prod</span> Package</td>
+                <td><span id="package-run" class="fa fa-play" onclick="packageRun()" data-toggle="popover" data-placement="auto top" data-trigger="focus" data-trigger="manual" data-content="There was an issue during compilation, testing, or packaging the application, check the 'test-package' logs"></span></td>
+                <td><span class="fa fa-stop" onclick="packageStop()"></span></td>
+                <td><span class="fa fa-list" onclick="packageLogs()"></span></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><span class="label label-warning">prod</span> Java server <span id="prod-server-running"></span></td>
+                <td><span id="prod-server-run" id="dev-server-run" class="fa fa-play" onclick="prodServerRun()" data-toggle="popover" data-placement="auto top" data-trigger="focus" data-trigger="manual" data-content="Is your application correctly packaged? Check the 8080 port and the and 'prod-server' logs"></span></td>
+                <td><span class="fa fa-stop" onclick="prodServerStop()"></span></td>
+                <td><span class="fa fa-list" onclick="prodServerLogs()"></span></td>
+                <td><span class="fa fa-external-link" onclick="prodServerOpen()"></span></td>
+            </tr>
+            <tr>
+                <td><span class="label label-warning">prod</span> Database <span id="prod-database-running"></span></td>
+                <td><span id="prod-database-run" class="fa fa-play" onclick="prodDatabaseRun()" data-toggle="popover" data-placement="auto top" data-trigger="focus" data-trigger="manual" data-content="Is your Docker daemon running?"></span></td>
+                <td><span class="fa fa-stop" onclick="prodDatabaseStop()"></span></td>
+                <td><span class="fa fa-list" onclick="prodDatabaseLogs()"></span></td>
+                <td></td>
+            </tr>
+            <tr id="extra-line">
+                <td>&nbsp;</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-4">
+                    <span class="fa fa-globe fa-lg" onclick="gotoWebsite()"></span>
+                    <span class="fa fa-twitter fa-lg" onclick="gotoTwitter()"></span>
+                    <span class="fa fa-github fa-lg" onclick="gotoGithub()"></span>
+                </div>
+                <div class="col-xs-6">
+                    <small><i><span id="jhipsterAppVersion"></span></i></small>
+                </div>
+                <div class="col-xs-2">
+                    <span class="fa fa-power-off fa-lg" onclick="exit()"></span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script>
+    window.jQuery = window.$ = require('jquery');
+    </script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- specific JHipster code -->
+    <script src="renderer.js"></script>
+</body>
+</html>

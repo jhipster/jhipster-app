@@ -1,0 +1,77 @@
+/*
+
+Copyright (c) Julien Dubois - http://www.julien-dubois.com. All Rights Reserved.
+
+This file is part of JHipster-App - https://github.com/jhipster/jhipster-app
+
+JHipster-App is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+JHipster-App is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with JHipster-App.  If not, see <http://www.gnu.org/licenses/>.
+
+*/
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    background-color: #e6e6e6;
+    height: 500px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+header {
+    background-color: #e6e6e6;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+footer {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: #e6e6e6;
+    position: absolute;
+    height: 45;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#main {
+    min-height: 100%;
+    position: relative;
+    background-color: #FFFFFF;
+}
+
+#no-jhipster-project {
+    padding-top: 12px;
+    min-height: 100%;
+    position: relative;
+    background-color: #FFFFFF;
+}
+
+.popover-title {
+    background-color: #d9534f;
+    color: #FFFFFF;
+    font-size: 80%;
+}
+
+.popover-content {
+    background-color: #e6e6e6;
+    font-size: 80%;
+}
+
+.popover {
+    background-color: #e6e6e6;
+}
